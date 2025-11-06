@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxrra0a4yxdlx"]
+[gd_scene load_steps=5 format=3 uid="uid://bxrra0a4yxdlx"]
 
 [ext_resource type="Script" path="res://node_3d.gd" id="1_gltc1"]
 
@@ -6,6 +6,9 @@
 size = Vector3(0.1, 0.1, 0.11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pm55m"]
+
+[sub_resource type="Environment" id="Environment_4430c"]
+background_mode = 2
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_gltc1")
@@ -44,3 +47,6 @@ text = "Enter VR"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.918405, -0.395642, 0, 0.395642, 0.918405, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4430c")
