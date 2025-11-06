@@ -19,17 +19,23 @@ script = ExtResource("1_gltc1")
 tracker = &"left_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftControler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255382, 2.98023e-08, -0.817962)
 mesh = SubResource("BoxMesh_c7h74")
 
 [node name="RightControler" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightControler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00782038, 0.0536752, -0.405277)
 mesh = SubResource("BoxMesh_pm55m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="XROrigin3D"]
 
 [node name="Button" type="Button" parent="XROrigin3D/CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 422.0
+offset_top = 148.0
+offset_right = 496.0
+offset_bottom = 179.0
 text = "Enter VR"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
