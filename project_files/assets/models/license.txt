@@ -1,0 +1,11 @@
+Model Information:
+* title:	free basic hands
+* source:	https://sketchfab.com/3d-models/free-basic-hands-6a943effa9714f01a6f6074ede48fde8
+* author:	61c3n (https://sketchfab.com/bttkller)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "free basic hands" (https://sketchfab.com/3d-models/free-basic-hands-6a943effa9714f01a6f6074ede48fde8) by 61c3n (https://sketchfab.com/bttkller) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

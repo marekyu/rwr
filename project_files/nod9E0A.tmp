@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxrra0a4yxdlx"]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="1_gltc1"]
+[ext_resource type="PackedScene" uid="uid://dks8n2uhkkocf" path="res://assets/models/scene.gltf" id="2_38urd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pm55m"]
+
+[sub_resource type="Environment" id="Environment_4430c"]
+background_mode = 2
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_gltc1")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.413624, 1.68503, 1.50166)
+near = 0.001
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="HandleLeftRoot" type="Node3D" parent="XROrigin3D/LeftController"]
+
+[node name="Sketchfab_Scene" parent="XROrigin3D/LeftController/HandleLeftRoot" instance=ExtResource("2_38urd")]
+transform = Transform3D(-0.0764753, 0.0482479, 0.995903, -0.0746031, 0.995752, -0.0539694, -0.994277, -0.0784248, -0.072551, -1.32113, 0.5, -1.184)
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.436164, 0.148391, -1.04436)
+mesh = SubResource("BoxMesh_pm55m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.918405, -0.395642, 0, 0.395642, 0.918405, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4430c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.031
+anchor_right = 0.029
+anchor_bottom = 0.031
+offset_left = 353.592
+offset_top = 151.912
+offset_right = 427.592
+offset_bottom = 182.912
+text = "Enter VR"

@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxrra0a4yxdlx"]
+[gd_scene load_steps=9 format=3 uid="uid://bxrra0a4yxdlx"]
 
 [ext_resource type="Script" path="res://node_3d.gd" id="1_gltc1"]
+[ext_resource type="PackedScene" uid="uid://bqe6ggl8y00ah" path="res://assets/models/hand/scene.gltf" id="2_6roip"]
+[ext_resource type="Script" path="res://teleport.gd" id="3_v42t7"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_c7h74"]
-size = Vector3(0.1, 0.1, 0.11)
-
-[sub_resource type="BoxMesh" id="BoxMesh_pm55m"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_88s3d"]
+top_radius = 0.2
+bottom_radius = 0.05
+height = 0.001
 
 [sub_resource type="Environment" id="Environment_4430c"]
 background_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i4knd"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2y7ca"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mvkpk"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_gltc1")
@@ -16,20 +24,31 @@ script = ExtResource("1_gltc1")
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.413624, 1.68503, 1.50166)
+near = 0.001
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255382, 2.98023e-08, -0.817962)
-mesh = SubResource("BoxMesh_c7h74")
+[node name="Sketchfab_Scene" parent="XROrigin3D/LeftController" instance=ExtResource("2_6roip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465572, 1.82337, -5.39065)
+
+[node name="HandleLeftRoot" type="Node3D" parent="XROrigin3D/LeftController"]
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
+script = ExtResource("3_v42t7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.436164, 0.148391, -1.04436)
-mesh = SubResource("BoxMesh_pm55m")
+[node name="Sketchfab_Scene" parent="XROrigin3D/RightController" instance=ExtResource("2_6roip")]
+transform = Transform3D(-0.677544, -0.735482, 0, 0.735482, -0.677544, 0, 0, 0, 1, -1.24635, 0.638749, -4.8224)
+
+[node name="TeleportRay" type="RayCast3D" parent="XROrigin3D/RightController"]
+target_position = Vector3(0, 0, -10)
+hit_back_faces = false
+
+[node name="TeleportMarker" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91115, -1.03613, 2.28699)
+mesh = SubResource("CylinderMesh_88s3d")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.918405, -0.395642, 0, 0.395642, 0.918405, 0, 0, 0, 1, 0, 0, 0)
@@ -45,8 +64,20 @@ anchor_left = 0.029
 anchor_top = 0.031
 anchor_right = 0.029
 anchor_bottom = 0.031
-offset_left = 391.592
-offset_top = 93.912
-offset_right = 465.592
-offset_bottom = 124.912
+offset_left = 353.592
+offset_top = 151.912
+offset_right = 427.592
+offset_bottom = 182.912
 text = "Enter VR"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68611, 0.751988, -2.62404)
+mesh = SubResource("CapsuleMesh_i4knd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13985, 0, 2.47989)
+mesh = SubResource("QuadMesh_2y7ca")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0225785, -25.4143)
+mesh = SubResource("SphereMesh_mvkpk")
